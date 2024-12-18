@@ -1,0 +1,483 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+		<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+        
+        <!-- title of site -->
+        <title>BMW</title>
+
+        <!-- For favicon png -->
+		<link rel="shortcut icon" type="image/icon" href="carpageasset/logo/favicon.png"/>
+       
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="carpageasset/css/font-awesome.min.css">
+
+        <!--linear icon css-->
+		<link rel="stylesheet" href="carpageasset/css/linearicons.css">
+
+        <!--flaticon.css-->
+		<link rel="stylesheet" href="carpageasset/css/flaticon.css">
+
+		<!--animate.css-->
+        <link rel="stylesheet" href="carpageasset/css/animate.css">
+
+        <!--owl.carousel.css-->
+        <link rel="stylesheet" href="carpageasset/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="carpageasset/css/owl.theme.default.min.css">
+		
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="carpageasset/css/bootstrap.min.css">
+		
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="carpageasset/css/bootsnav.css" >	
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="carpageasset/css/style.css">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="carpageasset/css/responsive.css">
+
+    </head>
+
+	
+	<body>
+	
+		<!--welcome-hero start -->
+		<section id="home" class="welcome-hero">
+			<div class="vid-container">
+				<video id="Video1" class="bgvid back" autoplay="true" muted="muted" preload="auto" loop>
+					<source src="carpageasset/video/bmw.webm" type="video/mp4">
+				</video>
+
+			<!-- top-area Start -->
+			<div class="top-area">
+				<div class="header-area">
+					<!-- Start Navigation -->
+				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+				        <div class="container">
+
+				            <!-- Start Header Navigation -->
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+				                    <i class="fa fa-bars"></i>
+				                </button>
+								<img src="carpageasset/logo/bmwlogo.jpg" alt="" width="150px" height="10px" style="margin-top: 25px; margin-left: -150px;">
+				                <a class="navbar-brand" href="index.html">BMW<span></span></a>
+
+				            </div><!--/.navbar-header-->
+				            <!-- End Header Navigation -->
+
+				            <!-- Collect the nav links, forms, and other content for toggling -->
+				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+				                    <li class=" scroll active"><a th:href="@{/home(username=${username})}">home</a></li>
+				                    <li class="scroll"><a href="#service">catoluge</a></li>
+				                    <li class="scroll"><a href="#new-cars">new cars</a></li>
+				                    <li class="scroll"><a href="#contact">contact</a></li>
+				                    
+				                    <!-- Account Button with Dropdown -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="account-username" th:text="${name}">Username <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" id="show-details">View Details</a></li>
+                            <li><a href="/logout" id="logout">Logout</a></li>
+                        </ul>
+                    </li>
+				                    
+				                    
+				                </ul><!--/.nav -->
+				            </div><!-- /.navbar-collapse -->
+				        </div><!--/.container-->
+				    </nav><!--/nav-->
+				    
+				    <!-- Hidden content for Purchased Cars and Test Drive Bookings -->
+    <div id="account-details" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Purchased Cars</h2>
+                    <div class="purchased-cars-list">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Test Drive Bookings</h2>
+                    <div class="test-drive-bookings-list">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+            // Dummy data for demonstration
+            const purchasedCars = [
+                { model: 'Car Model 1', date: 'January 1, 2024' },
+                { model: 'Car Model 2', date: 'March 15, 2024' }
+            ];
+
+            const testDriveBookings = [
+                { model: 'Car Model 1', date: 'February 10, 2024' },
+                { model: 'Car Model 2', date: 'April 5, 2024' }
+            ];
+
+            // Populate the purchased cars list
+            const purchasedCarsList = document.querySelector('.purchased-cars-list');
+            purchasedCars.forEach(car => {
+                const carItem = document.createElement('div');
+                carItem.classList.add('car-item');
+                carItem.innerHTML = `<h3>${car.model}</h3><p>Date of Purchase: ${car.date}</p>`;
+                purchasedCarsList.appendChild(carItem);
+            });
+
+            // Populate the test drive bookings list
+            const testDriveBookingsList = document.querySelector('.test-drive-bookings-list');
+            testDriveBookings.forEach(booking => {
+                const bookingItem = document.createElement('div');
+                bookingItem.classList.add('booking-item');
+                bookingItem.innerHTML = `<h3>${booking.model}</h3><p>Date of Test Drive: ${booking.date}</p>`;
+                testDriveBookingsList.appendChild(bookingItem);
+            });
+
+            // Show/Hide account details
+            document.getElementById('show-details').addEventListener('click', () => {
+                const detailsSection = document.getElementById('account-details');
+                if (detailsSection.style.display === 'none') {
+                    detailsSection.style.display = 'block';
+                } else {
+                    detailsSection.style.display = 'none';
+                }
+            });
+
+            // Logout functionality
+            document.getElementById('logout').addEventListener('click', () => {
+                // Perform logout actions, e.g., clearing session data
+                // Redirect to login page
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+				    
+				    <!-- End Navigation -->
+				</div><!--/.header-area-->
+			    <div class="clearfix"></div>
+
+			</div>
+			</div><!-- /.top-area-->
+			<!-- top-area End -->
+
+			<div class="container">
+				<div class="welcome-hero-txt">
+					<h2>THE ULTIMATE DRIVING EXPERIENCE</h2>
+					<p>
+					 The most powerful v8 engine in the Maranello marque's history
+						
+					</p>
+				</div>
+			</div>
+		</section><!--/.welcome-hero-->
+		<!--welcome-hero end -->
+
+		<!--service start -->
+		<section id="service" class="service">
+			<div class="container">
+				<div class="service-content">
+					<div class="row">
+						<div class="col-md-4 col-sm-6">
+							<div class="single-service-item">
+								<div class="single-service-icon">
+									<i class="flaticon-car"></i>
+								</div>
+								<h2><a href="#">CO2 Emission</a></h2>
+								<p>
+									LOW:478 G/KM<br>
+									MID:266 G/KM<br>
+									HIGH:247 G/KM<br>  
+								</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-service-item">
+								<div class="single-service-icon">
+									<i class="flaticon-car-repair"></i>
+								</div>
+								<h2><a href="#">Fuel Consumption</a></h2>
+								<p>
+									LOW:21L/100KM<br>
+									MID:11,7L/100KM<br>
+									HIGH:10,9/100KM<br>
+								</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-service-item">
+								<div class="single-service-icon">
+									<i class="flaticon-car-1"></i>
+								</div>
+								<h2><a href="#">Performance</a></h2>
+								<p>
+									Maximum Speed >325KM/H<br>
+									0-100KM/H (0-62MPH)3.0s<br><br>
+									Dry Weight Power Ratio  2.12KG/OV(6.35 lb/KW)
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.container-->
+
+		</section><!--/.service-->
+		<!--service end-->
+
+		<!--new-cars start -->
+		<section id="new-cars" class="new-cars">
+			<div class="container">
+				<div class="section-header">
+					<p>checkout <span>the</span> latest cars</p>
+					<h2>newest cars</h2>
+				</div><!--/.section-header-->
+				<div class="new-cars-content">
+					<div class="owl-carousel owl-theme" id="new-cars-carousel">
+						<div class="new-cars-item">
+							<div class="single-new-cars-item">
+								<div class="row">
+									<div class="col-md-7 col-sm-12">
+										<div class="new-cars-img">
+											<img src="carpageasset/images/new-cars-model/ncm1.png" alt="img"/>
+										</div><!--/.new-cars-img-->
+									</div>
+									<div class="col-md-5 col-sm-12">
+										<div class="new-cars-txt">
+											<h2><a href="#">chevrolet camaro <span> za100</span></a></h2>
+											<p>
+												The Chevrolet Camaro is a mid-size American automobile manufactured by Chevrolet, classified as a pony car. It first went on sale on September 29, 1966, for the 1967 model year and was designed to compete with the Ford Mustang. 
+											</p>
+											<p class="new-cars-para2">
+												the Camaro's design and engine options were engineered to make heads turn and hearts race.
+											</p>
+											<form action="/chevroletPage" method="get">
+												<button type="submit" class="welcome-btn new-cars-btn">
+													view details
+												</button>
+											</form>
+										</div><!--/.new-cars-txt-->	
+									</div><!--/.col-->
+								</div><!--/.row-->
+							</div><!--/.single-new-cars-item-->
+						</div><!--/.new-cars-item-->
+						<div class="new-cars-item">
+							<div class="single-new-cars-item">
+								<div class="row">
+									<div class="col-md-7 col-sm-12">
+										<div class="new-cars-img">
+											<img src="carpageasset/images/new-cars-model/ncm2.png" alt="img"/>
+										</div><!--/.new-cars-img-->
+									</div>
+									<div class="col-md-5 col-sm-12">
+										<div class="new-cars-txt">
+											<h2><a href="#">BMW series-3 wagon</a></h2>
+											<p>
+												The 3 Series brings power and innovation together in a sedan made to move – from the inline 4-cylinder engine in the 330i models to an integrated electric motor in the 330e plug-in hybrid. 
+
+											</p>
+											<p class="new-cars-para2">
+												The world's leading provider of premium cars and motorcycles and the home of the BMW, MINI, Rolls-Royce and BMW Motorrad brands.
+											</p>
+											<form action="/bmwPage" method="get">
+												<button type="submit" class="welcome-btn new-cars-btn">
+													view details
+												</button>
+											</form>
+										</div><!--/.new-cars-txt-->	
+									</div><!--/.col-->
+								</div><!--/.row-->	
+							</div><!--/.single-new-cars-item-->
+						</div><!--/.new-cars-item-->
+						<div class="new-cars-item">
+							<div class="single-new-cars-item">
+								<div class="row">
+									<div class="col-md-7 col-sm-12">
+										<div class="new-cars-img">
+											<img src="carpageasset/images/new-cars-model/ncm3.png" alt="img"/>
+										</div><!--/.new-cars-img-->
+									</div>
+									<div class="col-md-5 col-sm-12">
+										<div class="new-cars-txt">
+											<h2><a href="#">ferrari 488 superfast</a></h2>
+											<p>
+												The Ferrari 488 (Type F142M) is a mid-engine sports car produced by the Italian automobile manufacturer Ferrari. The car replaced the 458, being the first mid-engine Ferrari to use a turbocharged V8 since the F40. It was succeeded by the Ferrari F8. 
+											</p>
+											<p class="new-cars-para2">
+											 IT took many wins in races such as the Mille Miglia, Targa Florio and 24 Hours of Le Mans, as well as several overall victories in the World Sportscar Championship.
+											</p>
+											<form action="/ferrariPage" method="get">
+												<button type="submit" class="welcome-btn new-cars-btn">
+													view details
+												</button>
+											</form>
+										</div><!--/.new-cars-txt-->	
+									</div><!--/.col-->
+								</div><!--/.row-->
+							</div><!--/.single-new-cars-item-->
+						</div><!--/.new-cars-item-->
+					</div><!--/#new-cars-carousel-->
+				</div><!--/.new-cars-content-->
+			</div><!--/.container-->
+
+		</section><!--/.new-cars-->
+		<!--new-cars end -->
+
+		<!--blog start -->
+		<section id="blog" class="blog"></section><!--/.blog-->
+		<!--blog end -->
+
+		<!--contact start-->
+		<footer id="contact"  class="contact">
+			<div class="container">
+				<div class="footer-top">
+					<div class="row">
+						<div class="col-md-3 col-sm-6">
+							<div class="single-footer-widget">
+								<div class="footer-logo">
+									<a href="index.html">Car Mafia</a>
+								</div>
+								<p>
+									Welcome to Car Mafia,<br>
+								    123,Main street Tirunelveli,
+									Tamil Nadu-627005.
+								</p>
+								<div class="footer-contact">
+									<p>info@carmafia.com</p>
+									<p>(+91) 7042026405 </p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-6">
+							<div class="single-footer-widget">
+								<h2>about devloon</h2>
+								<ul>
+									<li><a href="#">about us</a></li>
+									<li><a href="#">career</a></li>
+									<li><a href="#">terms <span> of service</span></a></li>
+									<li><a href="#">privacy policy</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-xs-12">
+							<div class="single-footer-widget">
+								<h2>top brands</h2>
+								<div class="row">
+									<div class="col-md-7 col-xs-6">
+										<ul>
+											<li><a href="#">BMW</a></li>
+											<li><a href="#">lamborghini</a></li>
+											<li><a href="#">camaro</a></li>
+											<li><a href="#">audi</a></li>
+											<li><a href="#">infiniti</a></li>
+											<li><a href="#">nissan</a></li>
+										</ul>
+									</div>
+									<div class="col-md-5 col-xs-6">
+										<ul>
+											<li><a href="#">ferrari</a></li>
+											<li><a href="#">porsche</a></li>
+											<li><a href="#">land rover</a></li>
+											<li><a href="#">aston martin</a></li>
+											<li><a href="#">mersedes</a></li>
+											<li><a href="#">opel</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-offset-1 col-md-3 col-sm-6">
+							<div class="single-footer-widget">
+								<h2>news letter</h2>
+								<div class="footer-newsletter">
+									<p>
+										Subscribe to get latest news  update and informations
+									</p>
+								</div>
+								<div class="hm-foot-email">
+									<div class="foot-email-box">
+										<input type="text" class="form-control" placeholder="Add Email">
+									</div><!--/.foot-email-box-->
+									<div class="foot-email-subscribe">
+										<span><i class="fa fa-arrow-right"></i></span>
+									</div><!--/.foot-email-icon-->
+								</div><!--/.hm-foot-email-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								&copy; copyright.designed and developed by HARI
+							</p><!--/p-->
+						</div>
+						<div class="col-sm-6">
+							<div class="footer-social">
+								<a href="#"><i class="fa fa-facebook"></i></a>	
+								<a href="#"><i class="fa fa-instagram"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-pinterest-p"></i></a>
+								<a href="#"><i class="fa fa-behance"></i></a>	
+							</div>
+						</div>
+					</div>
+				</div><!--/.footer-copyright-->
+			</div><!--/.container-->
+
+			<div id="scroll-Top">
+				<div class="return-to-top">
+					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+				</div>
+				
+			</div><!--/.scroll-Top-->
+			
+        </footer><!--/.contact-->
+		<!--contact end-->
+
+
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="carpageasset/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="carpageasset/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="carpageasset/js/bootsnav.js"></script>
+
+		<!--owl.carousel.js-->
+        <script src="carpageasset/js/owl.carousel.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+        <!--Custom JS-->
+        <script src="carpageasset/js/custom.js"></script>
+        
+    </body>
+	
+</html>

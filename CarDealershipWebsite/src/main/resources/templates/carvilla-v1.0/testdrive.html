@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Drive Request Form</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .vid-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .bgvid.back {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+        }
+        .container {
+            width: auto;
+            max-width: 600px;
+            background-color: rgba(#666);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #FFF;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .form-group button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .form-group button:hover {
+            background-color: #066b28;
+        }
+        .consent-checkbox {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .consent-checkbox input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="vid-container">
+        <video id="Video1" class="bgvid back" autoplay muted loop>
+            <source src="video/forgetpassword.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="container" style="max-height: 500px; margin-top:0px; overflow-y: scroll;">
+        <h1>Test Drive Request Form</h1>
+        <form th:action="@{/addtest}" method="post" th:object="${test}">
+            <div class="form-group">
+                <label for="full_name">Full Name:</label>
+                <input type="text" th:field="*{name}" id="full_name" name="full_name" placeholder="Name" required>
+                <input type="hidden" id="username" th:value="${username}">
+            </div>
+          
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" th:field="*{phone}" id="phone" name="phone" placeholder="(91) 123-456-7890" required>
+            </div>
+            <div class="form-group">
+                <label for="vehicle_model">Preferred Vehicle Name:</label>
+                <select id="vehicle_model" name="vehicle_model" required  th:field="*{carname}">
+                    <option th:each="car:${car}" th:text="${car.name}" th:value="${car.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="vehicle_model">Preferred Vehicle Model:</label>
+                <select id="vehicle_model" name="vehicle_model" required  th:field="*{model}">
+                    <option  th:each="car:${car}" th:text="${car.model}" th:value="${car.model}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="test_drive_date">Preferred Test Drive Date:</label>
+                <input type="date" th:field="*{testdate}" id="test_drive_date" name="test_drive_date" required>
+            </div>
+            <div class="form-group">
+                <label for="test_drive_time">Preferred Test Drive Time:</label>
+                <input type="time" th:field="*{testtime}" id="test_drive_time" name="test_drive_time" required>
+            </div>
+            <div class="form-group">
+                <label for="comments">Do you have any specific questions or requests for the test drive?</label>
+                <textarea th:field="*{question}" id="comments" name="comments" rows="4" placeholder="Enter any additional comments or questions here"></textarea>
+            </div>
+            <div class="form-group consent-checkbox">
+                <input type="checkbox" id="consent" name="consent" required style="margin-left: -240px;">
+                <label for="consent" style="margin-left: -240px; color: white;">I agree to the terms and conditions for the test drive.</label>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Request</button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>

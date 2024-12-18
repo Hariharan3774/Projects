@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Booking and Test Drive Schedule</title>
+    <style>
+        /* General Table Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #444;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        thead th {
+            background-color: #f7b7a3;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fdfdfd;
+        }
+
+        tbody tr:hover {
+            background-color: #f7d7c3;
+            cursor: pointer;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        /* Responsive Table */
+        @media (max-width: 768px) {
+            table,
+            th,
+            td {
+                display: block;
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 10px;
+                display: block;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                text-align: right;
+                font-size: 13px;
+            }
+
+            td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #555;
+                margin-right: 10px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Car Booking and Test Drive Schedule</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Car</th>
+            <th>Model</th>
+            <th>Test Date</th>
+            <th>Test Time</th>
+            <th>Booking Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="data, iterStat : ${userCustomDataList}">
+            <td data-label="ID" th:text="${iterStat.index + 1}"></td>
+            <td data-label="Name" th:text="${data.name}"></td>
+            <td data-label="Username" th:text="${data.email}"></td>
+            <td data-label="Car" th:text="${data.custom != null ? data.custom.name : 'N/A'}"></td>
+            <td data-label="Model" th:text="${data.custom != null ? data.custom.model : 'N/A'}"></td>
+            <td data-label="Test Date" th:text="${data.test != null ? data.test.testdate : 'N/A'}"></td>
+            <td data-label="Test Time" th:text="${data.test != null ? data.test.testtime : 'N/A'}"></td>
+            <td data-label="Booking Date" th:text="${data.custom != null ? data.custom.date : 'N/A'}"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

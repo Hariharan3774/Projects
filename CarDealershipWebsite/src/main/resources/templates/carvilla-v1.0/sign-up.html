@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sign Up - Webleb</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="css/sign-up.css" rel="stylesheet" />
+</head>
+<body>
+<div class="vid-container">
+  <video id="Video1" class="bgvid back" autoplay="true" muted="muted" preload="auto" loop>
+      <source src="video/signup.mp4" type="video/mp4">
+  </video>
+  <form method="post" th:action="@{/useradded}" th:object="${user}">
+  <div class="inner-container">
+    <div class="box">
+      <h1>Sign Up</h1>
+      <input type="text" th:field="*{fname}" placeholder="First Name" required/>
+      <input type="text" th:field="*{lname}" placeholder="Last Name" required/>
+      <input type="text" th:field="*{address}" placeholder="Address" required/>
+      <input type="tel" th:field="*{phone}" placeholder="Phone" pattern="[0-9]{10}" required title="Phone number should be 10 digits"/>
+      <input type="email" th:field="*{email}" placeholder="Email" required/>
+      <div class="field space">
+        <span class="fa fa-lock"></span>
+        <input type="password" th:field="*{pass}" class="pass-key" required placeholder="Password">
+        <span class="show">SHOW</span>
+      </div>
+      <button type="submit">Sign Up</button>
+      <p>Already a member? <a href="/loginPage" class="login">Login</a></p>
+    </div>
+  </div>
+  </form>
+</div>
+<script>
+  const pass_field = document.querySelector('.pass-key');
+  const showBtn = document.querySelector('.show');
+  showBtn.addEventListener('click', function(){
+    if(pass_field.type === "password"){
+      pass_field.type = "text";
+      showBtn.textContent = "HIDE";
+      showBtn.style.color = "#3498db";
+    }else{
+      pass_field.type = "password";
+      showBtn.textContent = "SHOW";
+      showBtn.style.color = "#222";
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Worker</title>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        
+        form {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        
+        form label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        form input:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 8px rgba(102, 166, 255, 0.5);
+            outline: none;
+        }
+
+        
+        form button {
+            background: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #4b8fe1;
+        }
+
+        @media (max-width: 500px) {
+            form {
+                padding: 15px 20px;
+            }
+
+            form label,
+            form input,
+            form button {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form method="post" th:action="@{/workeradded}" th:object="${worker}">
+        <label>Enter your name: </label>
+        <input th:field="*{name}" type="text" name="name">
+        <label>Enter your email: </label>
+        <input th:field="*{email}" type="email" name="email">
+        <label>Enter your phone number: </label>
+        <input th:field="*{phone}" type="tel" name="phone">
+        <button type="submit">Add Worker</button>
+    </form>
+</body>
+</html>

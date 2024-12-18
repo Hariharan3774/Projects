@@ -1,0 +1,581 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+		<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+        
+        <!-- title of site -->
+        <title>Car Mafia</title>
+
+        <!-- For favicon png -->
+		<link rel="shortcut icon" type="image/icon" href="assets/logo/websitelogo.png"/>
+       
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+        <!--linear icon css-->
+		<link rel="stylesheet" href="assets/css/linearicons.css">
+
+        <!--flaticon.css-->
+		<link rel="stylesheet" href="assets/css/flaticon.css">
+
+		<!--animate.css-->
+        <link rel="stylesheet" href="assets/css/animate.css">
+
+        <!--owl.carousel.css-->
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+		
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="assets/css/style.css">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		
+        <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+	
+	<body>
+		<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+	
+		<!--welcome-hero start -->
+		<section id="home" class="welcome-hero">
+
+			<!-- top-area Start -->
+			<div class="top-area">
+				<div class="header-area">
+					<!-- Start Navigation -->
+				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+				        <div class="container">
+
+				            <!-- Start Header Navigation -->
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+				                    <i class="fa fa-bars"></i>
+				                </button>
+				                <img src="assets/logo/websitelogo.png" alt="" width="80px" height="10px" style="margin-top: 10px; margin-left: -245px;">
+				                <a class="navbar-brand" href="index.html">Car Mafia<span></span></a>
+
+				            </div><!--/.navbar-header-->
+				            <!-- End Header Navigation -->
+
+				            <!-- Collect the nav links, forms, and other content for toggling -->
+				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+				                    <li class=" scroll active"><a href="#home">home</a></li>
+				                    <li class="scroll"><a href="#service">service</a></li>
+									<li class="scroll"><a href="#testdrive">test drive</a></li>
+				                    <li class="scroll"><a href="#featured-cars">featured cars</a></li>
+				                    <li class="scroll"><a href="#new-cars">new cars</a></li>
+				                    <li class="scroll"><a href="#brand">brands</a></li>
+				                    <li class="scroll"><a href="#contact">contact</a></li>
+									 <!-- Account Button with Dropdown -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="account-username"  th:text="${name}"> <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" id="show-details">View Details</a></li>
+                            <li><a href="/logout" id="logout">Logout</a></li>
+                        </ul>
+                    </li>
+				                </ul><!--/.nav -->
+				            </div><!-- /.navbar-collapse -->
+				        </div><!--/.container-->
+				    </nav><!--/nav-->
+				    
+				     <!-- Hidden content for Purchased Cars and Test Drive Bookings -->
+    <div id="account-details" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 style="color: white;">Purchased Cars</h2><br>
+                    <div class="purchased-cars-list" th:each="custom:${custom}">
+                        <div>
+							<h3 style="color: white;" th:text="${custom.name}+'   '+${custom.model}"></h3>
+							<p style="color: white;" th:text="'Date of Purchase: '+${custom.date}"></p>
+						</div><br>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 style="color: white;">Test Drive Bookings</h2><br>
+                    <div class="test-drive-bookings-list" th:each="test:${test}">
+                        <div>
+							<h3 style="color: white;" th:text="${test.carname}+'   '+${test.model}"></h3>
+							<p style="color: white;" th:text="'Date of Purchase: '+${test.testdate}"></p>
+						</div><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            
+
+            // Show/Hide account details
+            document.getElementById('show-details').addEventListener('click', () => {
+                const detailsSection = document.getElementById('account-details');
+                if (detailsSection.style.display === 'none') {
+                    detailsSection.style.display = 'block';
+                } else {
+                    detailsSection.style.display = 'none';
+                }
+            });
+        });
+    </script>
+				    
+				    
+				    <!-- End Navigation -->
+				</div><!--/.header-area-->
+			    <div class="clearfix"></div>
+
+			</div><!-- /.top-area-->
+			<!-- top-area End -->
+
+			<div class="container">
+				<div class="welcome-hero-txt">
+					<h2>get your desired car in resonable price</h2>
+					<p>
+						Welcome to Car Mafia, where your dream car becomes a reality. We pride ourselves on offering a wide range of vehicles, from sleek sedans to powerful SUVs, ensuring that you'll find the perfect match for your needs and lifestyle.
+						
+					</p>
+				</div>
+			</div>
+		</section><!--/.welcome-hero-->
+		<!--welcome-hero end -->
+
+		<!--service start -->
+		<section id="service" class="service">
+			<div class="container">
+				<div class="service-content">
+					<div class="row">
+						<div class="col-md-4 col-sm-6">
+							<div class="single-service-item">
+								<div class="single-service-icon">
+									<i class="flaticon-car"></i>
+								</div>
+								<h2><a href="#">largest dealership <span> of</span> car</a></h2>
+								<p>
+									One of the largest dealership in around Tirunelveli Tamilnadu.  
+								</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-service-item">
+								<div class="single-service-icon">
+									<i class="flaticon-car-repair"></i>
+								</div>
+								<h2><a href="#">unlimited repair warrenty</a></h2>
+								<p>
+									Our customers has not to worry about the repair cost for 5 years from their purchase.   
+								</p>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-service-item">
+								<div class="single-service-icon">
+									<i class="flaticon-car-1"></i>
+								</div>
+								<h2><a href="#">insurance support</a></h2>
+								<p>
+									The document charges for the customers are at zero cost from our Dealerhip and there are plenty of Insurace Company 
+									,the customer has options to insure their vehicle of their choice for free of cost for one year.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.container-->
+
+		</section><!--/.service-->
+		<!--service end-->
+
+		<!--new-cars start -->
+		<section id="new-cars" class="new-cars">
+			<div class="container">
+				<div class="section-header">
+					<p>checkout <span>the</span> latest cars</p>
+					<h2>newest cars</h2>
+				</div><!--/.section-header-->
+				<div class="new-cars-content">
+					<div class="owl-carousel owl-theme" id="new-cars-carousel">
+						<div class="new-cars-item">
+							<div class="single-new-cars-item">
+								<div class="row">
+									<div class="col-md-7 col-sm-12">
+										<div class="new-cars-img">
+											<img src="assets/images/new-cars-model/ncm1.png" alt="img"/>
+										</div><!--/.new-cars-img-->
+									</div>
+									<div class="col-md-5 col-sm-12">
+										<div class="new-cars-txt">
+											<h2><a href="#">chevrolet camaro <span> za100</span></a></h2>
+											<p>
+												The Chevrolet one of the leading company has the remarkabale years of adventure. 
+											</p>
+											<p class="new-cars-para2">
+												with the color of bumbelbee it a provientmodent in todays Generation. 
+											</p>
+											<form action="/chevroletPage" method="get">
+												<input type="hidden" name="username" th:value="${username}">
+												<button type="submit" class="welcome-btn new-cars-btn">
+													view details
+												</button>
+											</form>
+										</div><!--/.new-cars-txt-->	
+									</div><!--/.col-->
+								</div><!--/.row-->
+							</div><!--/.single-new-cars-item-->
+						</div><!--/.new-cars-item-->
+						<div class="new-cars-item">
+							<div class="single-new-cars-item">
+								<div class="row">
+									<div class="col-md-7 col-sm-12">
+										<div class="new-cars-img">
+											<img src="assets/images/new-cars-model/ncm2.png" alt="img"/>
+										</div><!--/.new-cars-img-->
+									</div>
+									<div class="col-md-5 col-sm-12">
+										<div class="new-cars-txt">
+											<h2><a href="#">BMW series-3 wagon</a></h2>
+											<p>
+												The BMW is the Prestigious union of the world to create a Greater teritory. 
+											</p>
+											<p class="new-cars-para2">
+												Comes with a classic Navy blue Color with 300 Horse power. 
+											</p>
+											<form action="/bmwPage" method="get">
+												<input type="hidden" name="username" th:value="${username}">
+												<button type="submit" class="welcome-btn new-cars-btn">
+													view details
+												</button>
+											</form>
+										</div><!--/.new-cars-txt-->	
+									</div><!--/.col-->
+								</div><!--/.row-->	
+							</div><!--/.single-new-cars-item-->
+						</div><!--/.new-cars-item-->
+						<div class="new-cars-item">
+							<div class="single-new-cars-item">
+								<div class="row">
+									<div class="col-md-7 col-sm-12">
+										<div class="new-cars-img">
+											<img src="assets/images/new-cars-model/ncm3.png" alt="img"/>
+										</div><!--/.new-cars-img-->
+									</div>
+									<div class="col-md-5 col-sm-12">
+										<div class="new-cars-txt">
+											<h2><a href="#">ferrari 488 superfast</a></h2>
+											<p>
+												One of the premium Cars in the world to be Achieved a great potential to be Ridden. 
+											</p>
+											<p class="new-cars-para2">
+												Comes with a cherry red color with a horse power of 600. 
+											</p>
+											<form action="/ferrariPage" method="get">
+												<input type="hidden" name="username" th:value="${username}">
+												<button type="submit" class="welcome-btn new-cars-btn">
+													view details
+												</button>
+											</form>
+										</div><!--/.new-cars-txt-->	
+									</div><!--/.col-->
+								</div><!--/.row-->
+							</div><!--/.single-new-cars-item-->
+						</div><!--/.new-cars-item-->
+					</div><!--/#new-cars-carousel-->
+				</div><!--/.new-cars-content-->
+			</div><!--/.container-->
+
+		</section><!--/.new-cars-->
+		<!--new-cars end -->
+
+		<!--featured-cars start -->
+		<section id="featured-cars" class="featured-cars">
+			<div class="container">
+				<div class="section-header">
+					<p>checkout <span>the</span> featured cars</p>
+					<h2>featured cars</h2>
+				</div><!--/.section-header-->
+				<div class="featured-cars-content" id="featured-cars-content">
+					<div class="row" id="row"  style="overflow-y: scroll;">
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="single-featured-cars" id="single-featured-cars" th:each="car : ${car}">
+								<div class="featured-car-box" id="featured-car-box">
+									<div class="featured-img-box" id="featured-img-box">
+										<div class="featured-cars-img" id="featured-cars-img">
+											<img th:src="@{${car.image}}" alt="cars" width="300" height="100">
+										</div>
+									</div>
+									<div class="featured-car-details" id="featured-car-details">
+										<div class="featured-model-info" id="featured-model-info">
+											<p style="font-size: 17px;">
+												<label th:text="'Model: '+${car.model}"></label><br>
+												<span class="featured-mi-span" id="featured-mi-span" style="margin-left: -2px;" th:text="'MM: '+${car.mm}"></span><br>
+												<span class="featured-hp-span" id="featured-hp-span"  th:text="'HP: '+${car.hp}"></span><br>
+												<label  th:text="'Gear Type: '+${car.gear}"></label>
+											</p>
+										</div>
+										<div class="featured-cars-txt" id="featured-cars-txt">
+											<h2><a style="font-size: 23px;" href="#"  th:text="${car.name}"></a></h2>
+											<h3 style="font-size: 23px;" th:text="'₹'+${car.price}"></h3>
+										</div>
+										<div class="wrapper">
+											 <a id="custom" th:href="'/custom?carmodel=' + ${car.model} + '&carname=' + ${car.name} + '&carprice=' + ${car.price} + '&username='+ ${username} + '&carid=' + ${car.carid}" target="_blank">Custom</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+					
+						
+					</div>
+					
+		
+				</div>
+			</div><!--/.container-->
+
+		</section><!--/.featured-cars-->
+		<!--featured-cars end -->
+
+
+        <!--test-drive start-->
+		<section id="testdrive"  class="testdrive">
+			<div class="container">
+				<div class="section-header">
+					<h2>Test Drive</h2>
+					<div class="test">
+						<form action="/testpage" method="get" target="_blank">
+							<input type="hidden" name="username" th:value="${username}">
+						<button id="test" style="margin-top: 20px; margin-left: -14px;margin-bottom: 20px;" class="welcome-btn model-search-btn">
+							Test Drive Form
+						</button>
+						</form>
+						</div>
+											
+					</div>
+				
+				</div><!--/.clients-area-->
+
+			</div><!--/.container-->
+
+		</section><!--/testdrive-->
+
+		<!--test-drive end-->
+
+		
+        <!--brand strat -->
+		<section id="brand"  class="brand">
+			<div class="container">
+				<div class="section-header">
+					<h2>Our Brands</h2>
+				</div><!--/.section-header-->
+				<div class="brand-area">
+					<div class="owl-carousel owl-theme brand-item">
+						<div class="item">
+							<a href="#">
+								<img src="assets/images/brand/br1.png" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+						<div class="item">
+							<a href="#">
+								<img src="assets/images/brand/br2.png" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+						<div class="item">
+							<a href="#">
+								<img src="assets/images/brand/br3.png" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+						<div class="item">
+							<a href="#">
+								<img src="assets/images/brand/br4.png" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+
+						<div class="item">
+							<a href="#">
+								<img src="assets/images/brand/br5.png" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+
+						<div class="item">
+							<a href="#">
+								<img src="assets/images/brand/br6.png" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+					</div><!--/.owl-carousel-->
+				</div><!--/.clients-area-->
+
+			</div><!--/.container-->
+
+		</section><!--/brand-->	
+		<!--brand end -->
+
+		<!--blog start -->
+		<section id="blog" class="blog"></section><!--/.blog-->
+		<!--blog end -->
+
+		<!--contact start-->
+		<footer id="contact"  class="contact">
+			<div class="container">
+				<div class="footer-top">
+					<div class="row">
+						<div class="col-md-3 col-sm-6">
+							<div class="single-footer-widget">
+								<div class="footer-logo">
+									<a href="index.html">Car Mafia</a>
+								</div>
+								<p>
+									Welcome to Car Mafia,<br>
+								    123,Main street Tirunelveli,
+									Tamil Nadu-627005.
+								</p>
+								<div class="footer-contact">
+									<p>info@carmafia.com</p>
+									<p>(+91) 7042026405 </p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-6">
+							<div class="single-footer-widget">
+								<h2>About CAR MAFIA</h2>
+								<ul>
+									<li><a href="#">about us</a></li>
+									<li><a href="#">career</a></li>
+									<li><a href="#">terms <span> of service</span></a></li>
+									<li><a href="#">privacy policy</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-xs-12">
+							<div class="single-footer-widget">
+								<h2>top brands</h2>
+								<div class="row">
+									<div class="col-md-7 col-xs-6">
+										<ul>
+											<li><a href="#">BMW</a></li>
+											<li><a href="#">lamborghini</a></li>
+											<li><a href="#">camaro</a></li>
+											<li><a href="#">audi</a></li>
+											<li><a href="#">infiniti</a></li>
+											<li><a href="#">nissan</a></li>
+										</ul>
+									</div>
+									<div class="col-md-5 col-xs-6">
+										<ul>
+											<li><a href="#">ferrari</a></li>
+											<li><a href="#">porsche</a></li>
+											<li><a href="#">land rover</a></li>
+											<li><a href="#">aston martin</a></li>
+											<li><a href="#">mersedes</a></li>
+											<li><a href="#">opel</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-offset-1 col-md-3 col-sm-6">
+							<div class="single-footer-widget">
+								<h2>news letter</h2>
+								<div class="footer-newsletter">
+									<p>
+										Subscribe to get latest news  update and informations
+									</p>
+								</div>
+								<div class="hm-foot-email">
+									<div class="foot-email-box">
+										<input type="text" class="form-control" placeholder="Add Email">
+									</div><!--/.foot-email-box-->
+									<div class="foot-email-subscribe">
+										<span><i class="fa fa-arrow-right"></i></span>
+									</div><!--/.foot-email-icon-->
+								</div><!--/.hm-foot-email-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								&copy; copyright.designed and developed by HARI
+							</p><!--/p-->
+						</div>
+						<div class="col-sm-6">
+							<div class="footer-social">
+								<a href="#"><i class="fa fa-facebook"></i></a>	
+								<a href="#"><i class="fa fa-instagram"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-pinterest-p"></i></a>
+								<a href="#"><i class="fa fa-behance"></i></a>	
+							</div>
+						</div>
+					</div>
+				</div><!--/.footer-copyright-->
+			</div><!--/.container-->
+
+			<div id="scroll-Top">
+				<div class="return-to-top">
+					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+				</div>
+				
+			</div><!--/.scroll-Top-->
+			
+        </footer><!--/.contact-->
+		<!--contact end-->
+
+
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="assets/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="assets/js/bootsnav.js"></script>
+
+		<!--owl.carousel.js-->
+        <script src="assets/js/owl.carousel.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+        <!--Custom JS-->
+        <script src="assets/js/custom.js"></script>
+        
+    </body>
+	
+</html>

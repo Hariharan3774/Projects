@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Customization</title>
+    <style>
+        /* Basic styles for layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        header, footer {
+            background: #333;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .customization-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1em;
+        }
+        .option {
+            margin: 1em 0;
+        }
+        .summary {
+            margin-top: 2em;
+        }
+        button {
+            padding: 0.5em 1em;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Car Customization</h1>
+    </header>
+    <div class="customization-container">
+        <div class="option">
+            <label th:text="'Car Model: ' + ${model}"></label>
+        </div>
+        <div class="option">
+            <label for="exterior-color">Exterior Color:</label>
+            <input type="color" id="exterior-color" value="#ff0000">
+        </div>
+        <div class="option">
+            <label for="wheels">Wheels:</label>
+            <select id="wheels">
+                <option value="standard">Standard</option>
+                <option value="sport">Sport</option>
+                <option value="luxury">Luxury</option>
+                <!-- More wheel options -->
+            </select>
+        </div>
+        <div class="option">
+            <label for="interior">Interior:</label>
+            <select id="interior">
+                <option value="leather">Leather</option>
+                <option value="fabric">Fabric</option>
+                <option value="suede">Suede</option>
+                <!-- More interior options -->
+            </select>
+        </div>
+        <div class="option">
+            <label for="spoilers">Spoilers:</label>
+            <select id="spoilers">
+                <option value="none">None</option>
+                <option value="sport">Sport Spoiler</option>
+                <option value="aero">Aero Spoiler</option>
+                <option value="custom">Custom Spoiler</option>
+                <!-- More spoiler options -->
+            </select>
+        </div>
+        <div class="summary">
+            <form method="post" th:action="@{/addcustom}">
+                <h2>Summary</h2>
+                <input type="hidden" name="name" th:value="${name}">
+                <input type="hidden" name="model" th:value="${model}">
+                <input type="hidden" name="carid" th:value="${carid}">
+                <input type="hidden" name="price" th:value="${price}" id="base-price">
+                <input type="hidden" name="color" id="color">
+                <input type="hidden" name="wheel" id="wheel">
+                <input type="hidden" name="interior" id="interior-hidden">
+                <input type="hidden" name="spoiler" id="spoiler">
+                <input type="hidden" name="username" th:value="${username}">
+                <input type="hidden" name="totalPrice" id="total-price-hidden">
+                <p>Car Model: <span id="summary-model" th:text="${model}"></span></p>
+                <p>Exterior Color: <span id="summary-color">#ff0000</span></p>
+                <p>Wheels: <span id="summary-wheels">Standard</span></p>
+                <p>Interior: <span id="summary-interior">Leather</span></p>
+                <p>Spoilers: <span id="summary-spoilers">None</span></p>
+                <label>Total Price: ₹</label><label id="total-price" th:text="${price}"></label><br>
+                <button id="book" type="submit">Book Car</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Car Customization</p>
+    </footer>
+
+    <script>
+        const exteriorColor = document.getElementById('exterior-color');
+        const wheels = document.getElementById('wheels');
+        const interior = document.getElementById('interior');
+        const spoilers = document.getElementById('spoilers');
+        const summaryColor = document.getElementById('summary-color');
+        const summaryWheels = document.getElementById('summary-wheels');
+        const summaryInterior = document.getElementById('summary-interior');
+        const summarySpoilers = document.getElementById('summary-spoilers');
+        const totalPriceElement = document.getElementById('total-price');
+        const basePrice = parseInt(document.getElementById('base-price').value);
+
+        const optionPrices = {
+            wheels: {
+                standard: 0,
+                sport: 2000,
+                luxury: 4000,
+                // Add more wheel options and their prices
+            },
+            interior: {
+                leather: 0,
+                fabric: -500,
+                suede: 1500,
+                // Add more interior options and their prices
+            },
+            spoilers: {
+                none: 0,
+                sport: 1000,
+                aero: 1500,
+                custom: 2000,
+                // Add more spoiler options and their prices
+            }
+        };
+
+        function updateSummary() {
+            const selectedWheels = wheels.value;
+            const selectedInterior = interior.value;
+            const selectedSpoilers = spoilers.value;
+            summaryColor.textContent = exteriorColor.value;
+            document.getElementById('color').value = exteriorColor.value;
+            document.getElementById('wheel').value = wheels.value;
+            document.getElementById('interior-hidden').value = interior.value;
+            document.getElementById('spoiler').value = spoilers.value;
+            summaryWheels.textContent = wheels.options[wheels.selectedIndex].text;
+            summaryInterior.textContent = interior.options[interior.selectedIndex].text;
+            summarySpoilers.textContent = spoilers.options[spoilers.selectedIndex].text;
+
+            const totalPrice = basePrice +
+                optionPrices.wheels[selectedWheels] +
+                optionPrices.interior[selectedInterior] +
+                optionPrices.spoilers[selectedSpoilers];
+
+            totalPriceElement.textContent = totalPrice;
+            document.getElementById('total-price-hidden').value = totalPrice;
+        }
+
+        exteriorColor.addEventListener('input', updateSummary);
+        wheels.addEventListener('change', updateSummary);
+        interior.addEventListener('change', updateSummary);
+        spoilers.addEventListener('change', updateSummary);
+
+        // Initial summary update
+        updateSummary();
+    </script>
+</body>
+</html>

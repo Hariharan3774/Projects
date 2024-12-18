@@ -1,0 +1,146 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+table {
+  background: #012B39;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
+  margin-left: 100px;
+  margin-top: 150px;
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #E2B842;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+.disabled td {
+  color: #4F5F64;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #014055;
+}
+
+
+
+/*header css*/
+
+.admin-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-nav {
+    margin-top: 10px;
+  }
+  
+  .nav-link {
+    color: #fff;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    color: #ccc; 
+  }
+  
+  .dashboard {
+    padding: 20px;
+  }
+  
+  .dashboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dashboard ul li {
+    margin-bottom: 10px;
+  }
+  
+  .dashboard ul li:before {
+    content: "\2022";
+    margin-right: 10px;
+    color: #666;
+  }
+  
+  .user-management {
+    padding: 20px;
+  }
+  
+  .table {
+    margin-bottom: 20px;
+  }
+  
+  .actions {
+    text-align: center;
+  }
+  
+  .actions a {
+    margin-right: 10px;
+  }
+  
+  .actions button[type="submit"] {
+    margin-left:10px;
+  }
+  
+  .btn-add-user {
+    margin-top: 20px;
+  }
+  
+  /* Hover effects */
+  .dashboard ul li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .actions a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .actions button[type="submit"]:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .btn-add-user:hover {
+    background-color: #333;
+    color: #fff;
+  }
+
+  

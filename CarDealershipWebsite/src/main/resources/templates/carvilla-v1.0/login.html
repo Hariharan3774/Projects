@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login - Webleb</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="css/login.css" rel="stylesheet" />
+</head>
+<body>
+<div class="vid-container">
+  <video id="Video1" class="bgvid back" autoplay="true" muted="muted" preload="auto" loop>
+      <source src="video/login.mp4" type="video/mp4">
+  </video>
+  <div class="inner-container">
+	  <form method="post" action="/authentication">
+    <div class="box">
+      <h1>Login</h1>
+      <input type="text" name="username" placeholder="Username" id="username"/>
+      <div class="field space">
+        <span class="fa fa-lock"></span>
+        <input type="password" name="password" class="pass-key" required placeholder="Password">
+        <span class="show">SHOW</span>
+      </div>
+      <button type="submit">Login</button>
+      
+      <p><a href="/forget" class="forgot-password">Forgot Password?</a></p>
+      <p>Not a member? <a href="/signup" class="signup">Sign Up</a></p>
+    </div>
+    </form>
+  </div>
+</div>
+<script>
+  const pass_field = document.querySelector('.pass-key');
+  const showBtn = document.querySelector('.show');
+  showBtn.addEventListener('click', function(){
+    if(pass_field.type === "password"){
+      pass_field.type = "text";
+      showBtn.textContent = "HIDE";
+      showBtn.style.color = "#3498db";
+    }else{
+      pass_field.type = "password";
+      showBtn.textContent = "SHOW";
+      showBtn.style.color = "#3498db";
+    }
+  });
+</script>
+</body>
+</html>
